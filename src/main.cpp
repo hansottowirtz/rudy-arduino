@@ -21,11 +21,12 @@ void loop() {
     char type = arguments[0];
     switch(type) {
       case 'M': {
-        motor::setSpeed(String(&arguments[1]).toInt());
+        uint16_t speed = String(&arguments[1]).toInt();
+        motor::setSpeed(speed);
         break;
       }
       case 'S': {
-        uint8_t direction = String(&arguments[1]).toInt();
+        uint16_t direction = String(&arguments[1]).toInt();
         if (direction < 100) {
           leds::indicateLeft();
         } else if (direction > 900) {
@@ -66,7 +67,7 @@ void loop() {
 
   Serial.print('D');
   Serial.print(sonarN);
-  Serial.println(sonar::trigger(sonarN));
+  Serial.println(sonar::measure(sonarN));
 
   sonarN = (sonarN + 1) % 4;
 

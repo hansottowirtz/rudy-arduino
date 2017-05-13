@@ -5,8 +5,8 @@ namespace motor {
   Servo steeringServo;
 
   void initialize() {
-    drivingServo.attach(3);
-    steeringServo.attach(5);
+    drivingServo.attach(SERVO_PIN_M);
+    steeringServo.attach(SERVO_PIN_S);
     setSpeed(500);
     setDirection(500);
   }

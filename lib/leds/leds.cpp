@@ -7,7 +7,7 @@ namespace leds {
   uint8_t next_loading_led;
   uint32_t last_loading_millis;
 
-  Adafruit_NeoPixel strip = Adafruit_NeoPixel(8, LED_PIN, NEO_GRB + NEO_KHZ800);
+  Adafruit_NeoPixel strip;
 
   uint32_t front_color = strip.Color(240, 240, 196);
   uint32_t indicator_color = strip.Color(255, 100, 0);
@@ -37,6 +37,8 @@ namespace leds {
   int prev_brightness = current_brightness;
 
   void initialize() {
+    pinMode(LED_PIN, OUTPUT);
+    strip = Adafruit_NeoPixel(8, LED_PIN, NEO_GRB + NEO_KHZ800);
     strip.begin();
     setAdjustedColor(TOP_0_LED, current_top_0_color);
     setAdjustedColor(TOP_1_LED, current_top_1_color);

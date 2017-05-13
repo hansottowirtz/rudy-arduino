@@ -1,13 +1,5 @@
 #include <Arduino.h>
-
-#define ECHO_PIN_0 4
-#define ECHO_PIN_1 6
-#define ECHO_PIN_2 7
-#define ECHO_PIN_3 8
-#define TRIGGER_PIN_0 9
-#define TRIGGER_PIN_1 10
-#define TRIGGER_PIN_2 11
-#define TRIGGER_PIN_3 12
+#include <constants.h>
 
 namespace sonar {
   void initialize();

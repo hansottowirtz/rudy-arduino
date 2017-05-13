@@ -1,7 +1,6 @@
 #include <Arduino.h>
 #include <messenger.h>
-
-#define HALL_PIN 2
+#include <constants.h>
 
 namespace hall {
   void initialize();

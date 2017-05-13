@@ -1,6 +1,6 @@
 #include <Adafruit_NeoPixel.h>
+#include <constants.h>
 
-#define LED_PIN 13
 #define BACK_LEFT_LED 0
 #define BACK_RIGHT_LED 1
 #define FRONT_LEFT_LED 3
