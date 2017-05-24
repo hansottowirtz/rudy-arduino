@@ -1,7 +1,7 @@
 #include <main.h>
 
 uint8_t sonarN = 0;
-uint32_t previousMillis;
+uint32_t previousSonarMillis;
 
 void setup() {
   leds::initialize();
@@ -48,32 +48,37 @@ void loop() {
         } else {
           leds::disableLoading();
         }
+        break;
       }
       case 'I': {
         leds::disableLoading();
         leds::boot();
+        break;
+      }
+      case 'P': {
+        parking::park();
+        break;
       }
       case 'E': {
         motor::stop();
+        break;
       }
     }
   }
+
   messenger::update();
+  motor::update();
+  leds::update();
 
-  if (currentMillis - previousMillis >= 10) {
-    previousMillis = currentMillis;
-    leds::update();
+  if (currentMillis - previousSonarMillis >= 1000) {
+    previousSonarMillis = currentMillis;
+
+    noInterrupts();
+    Serial.print('D');
+    Serial.print(sonarN);
+    Serial.println(sonar::measure(sonarN));
+    interrupts();
+
+    sonarN = (sonarN + 1) % 4;
   }
-
-  Serial.print('D');
-  Serial.print(sonarN);
-  Serial.println(sonar::measure(sonarN));
-
-  sonarN = (sonarN + 1) % 4;
-
-  delay(60);
 }
-//
-// void hallCallback() {
-//   messenger::send(F("H"));
-// }

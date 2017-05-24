@@ -18,7 +18,7 @@ namespace sonar {
     digitalWrite(triggerPins[n], HIGH);
     delayMicroseconds(10);
     digitalWrite(triggerPins[n], LOW);
-    uint32_t duration = pulseIn(echoPins[n], HIGH, 50000);
+    uint32_t duration = pulseIn(echoPins[n], HIGH, 30000);
     uint32_t distance = duration / 58;
     distances[n] = distance;
     interrupts();
