@@ -68,10 +68,14 @@ namespace leds {
 
   void modifyLoading(uint32_t* current_color, uint32_t default_color, uint8_t n) {
     uint32_t current_millis = millis();
-    if (next_loading_led == n && current_millis - last_loading_millis > LOADING_PERIOD) {
-      *current_color = loading_color;
-      next_loading_led = (n + 1) % 4;
-      last_loading_millis = current_millis;
+    if (next_loading_led == n) {
+      if(current_millis - last_loading_millis > LOADING_PERIOD) {
+        *current_color = default_color;
+        next_loading_led = (n + 1) % 4;
+        last_loading_millis = current_millis;
+      } else {
+        *current_color = loading_color;
+      }
     } else {
       *current_color = default_color;
     }
