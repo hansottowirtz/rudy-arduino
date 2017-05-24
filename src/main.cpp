@@ -55,10 +55,6 @@ void loop() {
         leds::boot();
         break;
       }
-      case 'P': {
-        parking::park();
-        break;
-      }
       case 'E': {
         motor::stop();
         break;
@@ -70,7 +66,7 @@ void loop() {
   motor::update();
   leds::update();
 
-  if (currentMillis - previousSonarMillis >= 1000) {
+  if (currentMillis - previousSonarMillis >= 10) {
     previousSonarMillis = currentMillis;
 
     noInterrupts();
